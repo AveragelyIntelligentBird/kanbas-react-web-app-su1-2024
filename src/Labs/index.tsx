@@ -2,17 +2,16 @@ import {Navigate, Route, Routes} from "react-router";
 import Lab1 from "./Lab1";
 import Lab2 from "./Lab2";
 import Lab3 from "./Lab3";
-import TOC from "./TOC";
+import LabsTOC from "./LabsTOC";
+import React from "react";
 
 export default function Labs() {
     return (
         <div>
-            <h1>Anfisa Bogdanenko</h1>
-            <a href="https://github.com/AveragelyIntelligentBird/kanbas-react-web-app-su1-2024">
-                GitHub
+            <a href="">
+                Back to Landing
             </a>
-
-            <TOC/>
+            <LabsTOC/>
             <Routes>
                 <Route path="/" element={<Navigate to="Lab1"/>}/>
                 <Route path="/Lab1" element={<Lab1/>}/>
