@@ -12,7 +12,7 @@ export default function Landing() {
     return (
         <div>
             <h1>Anfisa Bogdanenko - CS5610 01</h1>
-            <a href="https://github.com/AveragelyIntelligentBird/kanbas-react-web-app-su1-2024">
+            <a id="wd-github" href="https://github.com/AveragelyIntelligentBird/kanbas-react-web-app-su1-2024">
                 GitHub
             </a>
             <LandingTOC/>
