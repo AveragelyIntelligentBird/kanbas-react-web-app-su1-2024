@@ -1,8 +1,11 @@
-export default function LabsTOC() {
+export default function TOC() {
     return (
         <div>
-            <h3>Labs</h3>
+            <h2>Labs And Assignments</h2>
             <ul>
+                <li>
+                    <a id="wd-a" href="#/Labs">Labs</a>
+                </li>
                 <li>
                     <a id="wd-a1" href="#/Labs/Lab1">Lab 1</a>
                 </li>
@@ -11,6 +14,9 @@ export default function LabsTOC() {
                 </li>
                 <li>
                     <a id="wd-a3" href="#/Labs/Lab3">Lab 3</a>
+                </li>
+                <li>
+                    <a id="wd-a4" href="#/Kanbas">Kanbas</a>
                 </li>
             </ul>
         </div>

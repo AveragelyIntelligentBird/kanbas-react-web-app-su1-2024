@@ -8,9 +8,6 @@ import React from "react";
 export default function Kanbas() {
     return (
         <div id="wd-kanbas">
-            <a href="">
-                Back to Landing
-            </a>
             <table border={1} width="100%">
                 <tbody>
                 <tr>
