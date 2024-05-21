@@ -8,7 +8,7 @@ import Tables from "./Tables";
 
 export default function Lab1() {
     return (
-        <div id="wd-lab1">
+        <div id="wd-lab1" className="container-fluid">
             <h2>Lab 1</h2>
             <h3>HTML Examples</h3>
             <Headings/>
