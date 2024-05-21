@@ -2,7 +2,7 @@ import {FaPlus} from "react-icons/fa6";
 
 export default function AssignmentEditor() {
     return (
-        <div id="wd-assignments-editor" className="px-4">
+        <div id="wd-assignments-editor" className="px-4 col-9">
             <div id="wd-higher-edits" className="mb-3 col">
                 <br/>
                 <label htmlFor="wd-name" className="col-sm-2 col-form-label ">
