@@ -1,0 +1,10 @@
+button.btn-secondary {
+  --bs-btn-color: #000;
+  --bs-btn-bg: #c7cdd1;
+  --bs-btn-border-color: #c7cdd1;
+  --bs-btn-hover-color: #fff;
+}
+
+div.bg-secondary {
+  background-color: #c7cdd1 !important;
+}

@@ -9,18 +9,20 @@ import OIAR311 from "./OIAR311";
 export default function Dashboard() {
     return (
         <div>
-            <h1 id="wd-dashboard-title">Dashboard</h1>
+            <h2 id="wd-dashboard-title">Dashboard</h2>
             <hr/>
-            <h2 id="wd-dashboard-published">Published Courses (7)</h2>
-            <hr/>
-            <div id="wd-dashboard-courses">
-                <OIAR101 />
-                <OIAR111 />
-                <OIAR201 />
-                <OIAR202 />
-                <OIAR211 />
-                <OIAR212 />
-                <OIAR311 />
+            <div id="wd-dashboard-courses" className="row px-4">
+                <h4 id="wd-dashboard-published">Published Courses (7)</h4>
+                <hr/>
+                <div className="row row-cols-1 row-cols-md-5 g-4 my-0">
+                    <OIAR101/>
+                    <OIAR111/>
+                    <OIAR201/>
+                    <OIAR202/>
+                    <OIAR211/>
+                    <OIAR212/>
+                    <OIAR311/>
+                </div>
             </div>
         </div>
     );
