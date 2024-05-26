@@ -1,4 +1,5 @@
-import {Routes, Route} from "react-router";
+import { courses } from "../Database";
+import {Routes, Route, useParams, useLocation} from "react-router";
 import CoursesNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
@@ -6,13 +7,20 @@ import {Navigate} from "react-router-dom";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
+import { FaAlignJustify } from "react-icons/fa6";
 
 export default function Courses() {
+    const { cid } = useParams();
+    const course = courses.find((course) => course._id === cid);
+    const { pathname } = useLocation();
     return (
         <div id="wd-courses">
-            <h2>OIAR101 Welcome to OIAR</h2>
+            <h4 className="text-danger">
+                <FaAlignJustify className="me-4 fs-4 mb-1"/>
+                {course && course.name} &gt; {pathname.split("/")[4]}
+            </h4>
             <hr/>
-            <div className="d-flex h-100">
+            <div className="d-flex h-100 px-2">
                 <div className="d-none d-md-block">
                     <CoursesNavigation/>
                 </div>
@@ -24,12 +32,12 @@ export default function Courses() {
                         <Route path="/Piazza" element={<h1>Piazza</h1>}/>
                         <Route path="/Zoom" element={<h1>Zoom</h1>}/>
                         <Route path="/Assignments" element={<Assignments/>}/>
-                        <Route path="/Assignments/:id" element={<AssignmentEditor/>}/>
+                        <Route path="/Assignments/:aid" element={<AssignmentEditor/>}/>
                         <Route path="/Quizzes" element={<h1>Quizzes</h1>}/>
                         <Route path="/Grades" element={<Grades/>}/>
                     </Routes>
+                </div>
             </div>
-          </div>
         </div>
     );
 }

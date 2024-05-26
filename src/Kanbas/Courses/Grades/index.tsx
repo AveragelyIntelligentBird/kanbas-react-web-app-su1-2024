@@ -1,6 +1,21 @@
 import GradesControls from "./GradesControls";
+import {useParams} from "react-router";
+import * as db from "../../Database";
 
 export default function Grades() {
+    const { cid } = useParams();
+
+    const enrolled_s_ids =
+        db.enrollments
+            .filter((e_record ) => e_record.course === cid)
+            .map((e_record) => e_record.user);
+    const enrolled_students =
+        enrolled_s_ids.map((s_id) =>
+            db.users.find((user) => user._id === s_id));
+
+    const assignments =
+        db.assignments.filter((a ) => a.course === cid);
+
     return (
         <div className="p-4">
             <GradesControls/><br/>
@@ -9,47 +24,39 @@ export default function Grades() {
                     <tbody>
                     <tr>
                         <th className="align-bottom">Student Name</th>
-                        <th className="text-center">A1<br/>Out of 100</th>
-                        <th className="text-center">A2<br/>Out of 100</th>
-                        <th className="text-center">A3<br/>Out of 100</th>
-                        <th className="text-center">A4<br/>Out of 100</th>
+                        {
+                            assignments.map((assignment) => (
+                                <th className="text-center align-bottom">
+                                    {assignment && assignment.title}
+                                    <br/>
+                                    Out of {assignment && assignment.points}
+                                </th>
+                            ))
+                        }
                     </tr>
-                    <tr>
-                        <td>
-                            <span className="text-danger">Alice Dyer</span>
-                        </td>
-                        <td className="text-center">77%</td>
-                        <td className="text-center">89%</td>
-                        <td className="text-center">90%</td>
-                        <td className="text-center">79%</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className="text-danger">Samama Khalid</span>
-                        </td>
-                        <td className="text-center">100%</td>
-                        <td className="text-center">92%</td>
-                        <td className="text-center">94%</td>
-                        <td className="text-center">96%</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className="text-danger">Gwendloyn Bouchard</span>
-                        </td>
-                        <td className="text-center">100%</td>
-                        <td className="text-center">100%</td>
-                        <td className="text-center">100%</td>
-                        <td className="text-center">100%</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className="text-danger">Colin Becher</span>
-                        </td>
-                        <td className="text-center">0%</td>
-                        <td className="text-center">0%</td>
-                        <td className="text-center">0%</td>
-                        <td className="text-center">0%</td>
-                    </tr>
+                    {
+                        enrolled_students.map((student) => (
+                            student &&
+                            <tr>
+                                <td>
+                                    <span className="text-danger"> {student.firstName} {student.lastName} </span>
+                                </td>
+                                {
+                                    assignments.map((assignment) => {
+                                        let student_grades = db.grades.filter(
+                                            (grade) => grade.student === student._id);
+                                        let grade = student_grades.find(
+                                            (g) => g.assignment === assignment._id);
+                                        return (
+                                            <td className="text-center">
+                                                {grade && grade.grade}
+                                            </td>);
+                                    })
+                                }
+                            </tr>
+                        ))
+
+                    }
                     </tbody>
                 </table>
             </div>
