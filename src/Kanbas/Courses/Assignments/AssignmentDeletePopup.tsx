@@ -24,8 +24,6 @@ export default function AssignmentDeletePopup(
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                             No
-
-
                         </button>
                         <button onClick={deleteAssignment} type="button" data-bs-dismiss="modal"
                                 className="btn btn-danger">
