@@ -33,8 +33,8 @@ export default function Assignments() {
                         </div>
                     </div>
                     <ul className="wd-assignment-list list-group rounded-0">
-                        {courseAssignments.map((assignment : any) => (
-                            <li key={assignment._id}
+                        {courseAssignments.map((assignment: any) => (
+                            <li key={`a-${assignment._id}`}
                                 className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center"
                                 style={{borderLeft: "4px solid green"}}>
                                 <BsGripVertical className="me-2 fs-3"/>
@@ -49,7 +49,8 @@ export default function Assignments() {
                                     </Link>
                                     <br/>
                                     <span className="text-danger">Multiple Modules </span>
-                                    | <b>Not available until</b> {dateValToString(assignment.available_from)} | <br/>
+                                    | <b>Not available
+                                    until</b> {dateValToString(assignment.available_from)} | <br/>
                                     <b>Due</b> {dateValToString(assignment.due)} | {assignment.points} pts
                                 </div>
                                 <AssignmentControlButtons assignment={assignment}/>

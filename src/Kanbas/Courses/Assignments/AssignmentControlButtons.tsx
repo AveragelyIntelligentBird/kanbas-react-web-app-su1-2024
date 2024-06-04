@@ -12,11 +12,11 @@ export default function AssignmentControlButtons(
     return (
         <div className="float-end">
             <FaTrashCan className="text-danger me-3 mb-1"
-                        data-bs-toggle="modal" data-bs-target="#wd-delete-assignment-dialog"
-                        onClick={() => console.log()}/>
+                        data-bs-toggle="modal" data-bs-target={`#wd-delete-assignment-dialog-${assignment._id}`}
+            />
             <GreenCheckmark/>
             <IoEllipsisVertical className="fs-4"/>
-            <AssignmentDeletePopup assignmentName={assignment.title} deleteAssignment={() => {
+            <AssignmentDeletePopup assignment={assignment} deleteAssignment={() => {
                 dispatch(deleteAssignment(assignment._id));
             }} />
         </div>

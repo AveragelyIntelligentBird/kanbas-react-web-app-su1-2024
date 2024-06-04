@@ -1,12 +1,12 @@
 export default function AssignmentDeletePopup(
-    {assignmentName, deleteAssignment}:
+    {assignment, deleteAssignment}:
         {
-            assignmentName: string;
+            assignment: any;
             deleteAssignment: () => void;
         })
 {
     return (
-        <div id="wd-delete-assignment-dialog"
+        <div id={`wd-delete-assignment-dialog-${assignment._id}`}
              className="modal fade"
              data-bs-backdrop="static"
              data-bs-keyboard="false">
@@ -19,7 +19,7 @@ export default function AssignmentDeletePopup(
                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div className="modal-body">
-                        Are you sure you want to delete the assignment: "{assignmentName}"?
+                        Are you sure you want to delete the assignment: "{assignment.title}"?
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
