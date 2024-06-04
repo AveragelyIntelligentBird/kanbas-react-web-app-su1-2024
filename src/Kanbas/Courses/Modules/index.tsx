@@ -3,7 +3,6 @@ import { addModule, editModule, updateModule, deleteModule }
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import ModulesControls from "./ModulesControls";
 import {BsGripVertical} from "react-icons/bs";
 import "./styles.css"
@@ -19,7 +18,7 @@ export default function Modules() {
         <div className="p-4">
             <ModulesControls
                 addModule={() => {
-                    dispatch(addModule({ name: moduleName, course: cid }));
+                    dispatch(addModule({name: moduleName, course: cid}));
                     setModuleName("");
                 }}
                 moduleName={moduleName} setModuleName={setModuleName}/>
@@ -28,7 +27,7 @@ export default function Modules() {
                 {modules
                     .filter((module: any) => module.course === cid)
                     .map((module: any) => (
-                        <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+                        <li key={module.moduleId} className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
                             <div className="wd-title p-3 ps-2 bg-secondary">
                                 <BsGripVertical className="me-2 fs-3"/>
                                 {!module.editing && module.name}
@@ -39,29 +38,33 @@ export default function Modules() {
                                             dispatch(updateModule({...module, name: e.target.value}));
                                         }}
                                         onKeyDown={(e) => {
-                                           if (e.key === "Enter") {
-                                               dispatch(updateModule({...module, editing: false}));
-                                           }
+                                            if (e.key === "Enter") {
+                                                dispatch(updateModule({...module, editing: false}));
+                                            }
                                         }}
                                         value={module.name}
                                     />
                                 )}
                                 <ModuleControlButtons
                                     moduleId={module._id}
-                                    deleteModule={(moduleId) => {dispatch(deleteModule(moduleId))}}
+                                    deleteModule={(moduleId) => {
+                                        dispatch(deleteModule(moduleId))
+                                    }}
                                     editModule={(moduleId) => dispatch(editModule(moduleId))}/>
                             </div>
-                            {module.lessons && (
-                                <ul className="wd-lessons list-group rounded-0">
-                                    {module.lessons.map((lesson: any) => (
-                                        <li className="wd-lesson list-group-item p-3 ps-1">
-                                            <BsGripVertical className="me-2 fs-3"/>
-                                            {lesson.name}
-                                            <LessonControlButtons/>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                            <div className="wd-module-content">
+                                {module.lessons && (
+                                    <ul className="wd-lessons list-group rounded-0">
+                                        {module.lessons.map((lesson: any) => (
+                                            <li key={lesson._id} className="wd-lesson list-group-item p-3 ps-1">
+                                                <BsGripVertical className="me-2 fs-3"/>
+                                                {lesson.name}
+                                                <LessonControlButtons/>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
                         </li>
                     ))}
             </ul>

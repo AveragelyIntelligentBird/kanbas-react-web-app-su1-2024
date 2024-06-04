@@ -1,6 +1,7 @@
 import {FaBan, FaPlus} from "react-icons/fa6";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import {FaSearch} from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 export default function AssignmentsControl() {
     return (
@@ -12,10 +13,15 @@ export default function AssignmentsControl() {
                 <FaPlus className="position-relative me-2" style={{bottom: "1px"}}/>
                 Group
             </button>
-            <button id="wd-add-module-btn" className="btn btn-md btn-danger me-1 float-end">
-                <FaPlus className="position-relative me-2" style={{bottom: "1px"}}/>
-                Assignment
-            </button>
+            <Link to={new Date().getTime().toString()}>
+                <button
+                    id="wd-add-module-btn"
+                    className="btn btn-md btn-danger me-1 float-end"
+                >
+                    <FaPlus className="position-relative me-2" style={{bottom: "1px"}}/>
+                    Assignment
+                </button>
+            </Link>
         </div>
     );
 }
