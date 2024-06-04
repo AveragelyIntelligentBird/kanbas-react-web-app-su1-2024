@@ -22,7 +22,9 @@ export default function Assignments() {
                             <BsGripVertical className="me-2 fs-3"/>
                             <FaAngleDown className="me-2 fs-3"/>
                             <b>ASSIGNMENTS</b>
-                            <ModuleControlButtons/>
+
+                            {/*<ModuleControlButtons/>*/}
+
                             <div className="float-end px-1 mx-3 border border-1 border-black rounded-4">40% of Total
                             </div>
                         </div>

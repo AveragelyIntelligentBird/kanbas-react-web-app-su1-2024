@@ -13,6 +13,7 @@ const modulesSlice = createSlice({
                 lessons: [],
                 name: module.name,
                 course: module.course,
+                description: "",
             };
             state.modules = [...state.modules, newModule];
         },
@@ -32,6 +33,10 @@ const modulesSlice = createSlice({
     },
 
 });
-export const { addModule, deleteModule, updateModule, editModule } =
+export const {
+    addModule,
+    deleteModule,
+    updateModule,
+    editModule } =
   modulesSlice.actions;
 export default modulesSlice.reducer;
