@@ -25,8 +25,8 @@ export default function AssignmentEditor() {
                         </div>
                         <br/>
                         <textarea id="wd-description" rows={10} className="col-sm-10 form-control">
-                    {assignment.description}
-                </textarea>
+                            {assignment.description}
+                        </textarea>
                     </div>
                     <br/>
                     <div id="wd-lower-edits">
