@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 import ArrowFunctions from "./ArrowFunctions";
 import BooleanVariables from "./BooleanVariables";
@@ -31,10 +32,19 @@ import Highlight from "./Highlight";
 import PathParameters from "./PathParameters";
 
 export default function Lab3() {
+    const { todos } = useSelector((state: any) => state.todosReducer);
     console.log("Haiiii <3");
     return (
         <div id="wd-lab3" className="container-fluid">
             <h3>Lab 3</h3>
+            <ul className="list-group">
+                {todos.map((todo: any) => (
+                    <li className="list-group-item" key={todo.id}>
+                        {todo.title}
+                    </li>
+                ))}
+            </ul>
+            <hr/>
             <VariablesAndConstants/>
             <VariableTypes/>
             <BooleanVariables/>
@@ -70,8 +80,10 @@ export default function Lab3() {
 
             <h4>Highlight</h4>
             <Highlight>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipitratione eaque illo minus cum, saepe
-                totam vel nihil repellat nemo explicabo excepturi consectetur. Modi omnis minus sequi maiores, provident
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipitratione eaque illo minus cum,
+                saepe
+                totam vel nihil repellat nemo explicabo excepturi consectetur. Modi omnis minus sequi maiores,
+                provident
                 voluptates.
             </Highlight>
             <hr/>
