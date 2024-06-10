@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {deleteAssignment} from "./reducer";
 
 export default function AssignmentControlButtons(
-    {assignment}: {assignment: any;}
+    {assignment, removeAssignment}: {assignment: any; removeAssignment: () => void;}
 ) {
     const dispatch = useDispatch();
     return (
@@ -16,8 +16,6 @@ export default function AssignmentControlButtons(
             />
             <GreenCheckmark/>
             <IoEllipsisVertical className="fs-4"/>
-            <AssignmentDeletePopup assignment={assignment} deleteAssignment={() => {
-                dispatch(deleteAssignment(assignment._id));
-            }} />
+            <AssignmentDeletePopup assignment={assignment} deleteAssignment={removeAssignment} />
         </div>
     );}

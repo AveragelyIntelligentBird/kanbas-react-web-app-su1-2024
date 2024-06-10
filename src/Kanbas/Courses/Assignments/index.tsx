@@ -1,4 +1,6 @@
-import {useSelector} from "react-redux";
+import * as client from "./client";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import { useParams } from "react-router";
 import {Link} from "react-router-dom";
 import {FaAngleDown, FaBookOpen} from "react-icons/fa6";
@@ -6,16 +8,27 @@ import {BsGripVertical} from "react-icons/bs";
 import AssignmentsControl from "./AssignmentsControl";
 import AssignmentGroupControlButtons from "./AssignmentGroupControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
+import {addAssignment, setAssignments, deleteAssignment, updateAssignment} from "./reducer";
 
 export default function Assignments() {
+    const dispatch = useDispatch();
     const { cid } = useParams();
     const { assignments } = useSelector((state:any) => state.assignmentsReducer);
-    const courseAssignments =
-        assignments.filter((a : any ) => a.course === cid);
     const dateValToString = (date_string: string) => {
         let date = new Date(date_string)
         return `${date.toLocaleString('default', { month: 'short' })} 
         ${date.getDate()} ${date.getFullYear()}`;
+    };
+    const fetchAssignments = async () => {
+        const fetchAssignments = await client.findAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(fetchAssignments));
+    };
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
+    const removeAssignment = async (assignmentId: string) => {
+        await client.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
     };
     return (
         <div id="wd-assignments">
@@ -31,7 +44,7 @@ export default function Assignments() {
                         </div>
                     </div>
                     <ul className="wd-assignment-list list-group rounded-0">
-                        {courseAssignments.map((assignment: any) => (
+                        {assignments.map((assignment: any) => (
                             <li key={`a-${assignment._id}`}
                                 className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center"
                                 style={{borderLeft: "4px solid green"}}>
@@ -51,7 +64,8 @@ export default function Assignments() {
                                     until</b> {dateValToString(assignment.available_from)} | <br/>
                                     <b>Due</b> {dateValToString(assignment.due)} | {assignment.points} pts
                                 </div>
-                                <AssignmentControlButtons assignment={assignment}/>
+                                <AssignmentControlButtons removeAssignment={() => removeAssignment(assignment._id)}
+                                                          assignment={assignment}/>
                             </li>
                         ))}
                     </ul>

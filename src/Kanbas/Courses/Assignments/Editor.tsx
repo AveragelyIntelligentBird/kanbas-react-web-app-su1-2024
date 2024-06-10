@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addAssignment, updateAssignment} from "./reducer";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
     const dispatch = useDispatch();
@@ -22,6 +23,14 @@ export default function AssignmentEditor() {
                 available_until: new Date().toISOString(),
                 due: new Date().toISOString(),
             });
+    const createAssignment = async (assignment: any) => {
+        const newAssignment = await client.createAssignment(cid as string, assignment);
+        dispatch(addAssignment(newAssignment));
+    };
+    const saveAssignment = async (assignment: any) => {
+        const status = await client.updateAssignment(assignment);
+        dispatch(updateAssignment(assignment));
+    };
     return (
         <div id="wd-assignments-editor" className="px-4 col-9">
             <div>
@@ -209,8 +218,8 @@ export default function AssignmentEditor() {
                         <button className="btn btn-md btn-danger me-1 float-end"
                             onClick={() => {
                                 (!assignmentFind)
-                                    ? dispatch(addAssignment(assignment))
-                                    : dispatch(updateAssignment(assignment));
+                                    ? createAssignment(assignment)
+                                    : saveAssignment(assignment);
                                 navigate("../Assignments");
                             }}>
                             Save
