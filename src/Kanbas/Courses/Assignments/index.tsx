@@ -1,11 +1,9 @@
-import { deleteAssignment }  from "./reducer";
 import {useSelector} from "react-redux";
 import { useParams } from "react-router";
 import {Link} from "react-router-dom";
 import {FaAngleDown, FaBookOpen} from "react-icons/fa6";
 import {BsGripVertical} from "react-icons/bs";
 import AssignmentsControl from "./AssignmentsControl";
-import LessonControlButtons from "../Modules/LessonControlButtons";
 import AssignmentGroupControlButtons from "./AssignmentGroupControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 
