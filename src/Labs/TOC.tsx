@@ -71,7 +71,25 @@ export default function TOC() {
                    href="https://github.com/AveragelyIntelligentBird/kanbas-react-web-app-su1-2024"
                    className="nav-link" rel="noreferrer"
                 >
-                    GitHub
+                    GitHub - Web App
+                </a>
+            </li>
+            <li className="nav-item">
+                <a id="wd-github"
+                   target="_blank"
+                   href="https://github.com/AveragelyIntelligentBird/kanbas-node-server-app-su1-2024"
+                   className="nav-link" rel="noreferrer"
+                >
+                    GitHub - Node Server
+                </a>
+            </li>
+            <li className="nav-item">
+                <a id="wd-github"
+                   target="_blank"
+                   href="https://kanbas-node-server-app-su1-2024-1-g14c.onrender.com"
+                   className="nav-link" rel="noreferrer"
+                >
+                    Server Root
                 </a>
             </li>
         </ul>
