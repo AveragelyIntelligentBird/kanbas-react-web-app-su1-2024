@@ -35,7 +35,7 @@ export default function Profile() {
         <div>
             <h1>Profile</h1>
             {profile && (
-                <div>
+                <div className="col-6">
                     <input
                         value={profile.username}
                         onChange={(e) =>
@@ -100,10 +100,10 @@ export default function Profile() {
                     </select>
                 </div>
             )}
-            <button onClick={updateProfile} className="float-start btn btn-danger w-100">
+            <button onClick={updateProfile} className="float-start btn btn-primary">
                 Update details
             </button>
-            <button onClick={signout} className="float-start btn btn-danger w-100">
+            <button onClick={signout} className="float-start btn btn-danger">
                 Sign out
             </button>
         </div>
