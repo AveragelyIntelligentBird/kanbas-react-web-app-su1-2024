@@ -38,6 +38,8 @@ export default function Profile() {
               setProfile({ ...profile, username: e.target.value })
             }
             className="form-control mb-2"
+            placeholder="username"
+            title="Username"
           />
           <input
             value={profile.password}
@@ -45,6 +47,7 @@ export default function Profile() {
               setProfile({ ...profile, password: e.target.value })
             }
             className="form-control mb-2"
+            title="Password"
           />
           <input
             value={profile.firstName}
@@ -52,6 +55,8 @@ export default function Profile() {
               setProfile({ ...profile, firstName: e.target.value })
             }
             className="form-control mb-2"
+            placeholder="John"
+            title="First Name"
           />
           <input
             value={profile.lastName}
@@ -59,21 +64,27 @@ export default function Profile() {
               setProfile({ ...profile, lastName: e.target.value })
             }
             className="form-control mb-2"
+            placeholder="Doe"
+            title="Last Name"
           />
           <input
             value={profile.dob}
             onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
             type="date"
             className="form-control mb-2"
+            title="Date of Birth"
           />
           <input
             value={profile.email}
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
             className="form-control mb-2"
+            placeholder="example@email.com"
+            title="Email"
           />
           <select
             onChange={(e) => setProfile({ ...profile, role: e.target.value })}
             className="form-control mb-2"
+            title="Role"
           >
             <option value="USER">User</option>{" "}
             <option value="ADMIN">Admin</option>
